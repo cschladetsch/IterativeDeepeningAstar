@@ -9,11 +9,15 @@
 #include <chrono>
 #include <thread>
 
+#include "AstarLibrary.hpp"
+
 int main(int argc, char* argv[]) {
     if (SDL_Init(SDL_INIT_VIDEO) < 0) {
         SDL_LogError(SDL_LOG_CATEGORY_APPLICATION, "SDL initialization failed: %s", SDL_GetError());
         return 1;
     }
+
+    AstarNode node;
 
     SDL_Window* window = SDL_CreateWindow("SDL Window", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 800, 800, SDL_WINDOW_SHOWN);
     if (window == nullptr) {

@@ -29,10 +29,11 @@ file(GLOB_RECURSE LIB_SOURCES "library/*.cpp")
 add_library(${LIBRARY_NAME} STATIC ${LIB_SOURCES})
 
 # Executable
-add_executable(${PROJECT_NAME} ${LIB_SOURCES} ${HEADER_FILES} source/main.cpp)
+file(GLOB_RECURSE APP_SOURCES "source/*.cpp")
+add_executable(${PROJECT_NAME} ${HEADER_FILES} ${APP_SOURCES})
 
 # Link with SDL2, Boost libraries, and the custom static library
-target_link_libraries(${PROJECT_NAME} ${SDL2_LIBRARIES} ${Boost_LIBRARIES})
+target_link_libraries(${PROJECT_NAME} ${LIBRARY_NAME} ${SDL2_LIBRARIES} ${Boost_LIBRARIES})
 
 file(GLOB_RECURSE HEADER_FILES "include/*.hpp")
 source_group(TREE "${CMAKE_CURRENT_SOURCE_DIR}/include" PREFIX "include" FILES ${HEADER_FILES})
